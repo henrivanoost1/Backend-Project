@@ -11,7 +11,7 @@ services:
     ports:
       - 1433:1433
     volumes:
-      - C:\Backend-Project\Backend-Project\data:/var/opt/mssql/data
+      - .\data:/var/opt/mssql/data
   api:
     image: backendproject
     build:
