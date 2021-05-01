@@ -9,10 +9,10 @@ namespace Backend_Project.Models
     {
         public Guid AfdelingId { get; set; }
 
-        [Required]
+
         public string Name { get; set; }
 
-        [Required]
+
         public string Gemeente { get; set; }
 
         [JsonIgnore]

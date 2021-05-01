@@ -9,7 +9,7 @@ namespace Backend_Project.Models
     {
         public Guid GewestId { get; set; }
 
-        [Required]
+
         public string Name { get; set; }
 
         [JsonIgnore]

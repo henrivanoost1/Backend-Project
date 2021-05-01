@@ -9,16 +9,16 @@ namespace Backend_Project.Models
 
         public Guid RegioverantwoordelijkeId { get; set; }
 
-        [Required]
+
         public string Name { get; set; }
 
-        [Required]
+
         public string FirstName { get; set; }
 
-        [Range(16, 80)]
+
         public int Age { get; set; }
 
-        [EmailAddress]
+
         public string Email { get; set; }
 
         [JsonIgnore]

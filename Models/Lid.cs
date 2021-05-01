@@ -9,10 +9,10 @@ namespace Backend_Project.Models
     {
         public Guid LidId { get; set; }
 
-        [Required]
+
         public string Name { get; set; }
 
-        [Required]
+
         public string FirstName { get; set; }
 
         [Range(16, 80)]
