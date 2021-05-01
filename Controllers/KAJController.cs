@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using RegistrationAPI.Models;
+using Backend_Project.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Globalization;
@@ -35,20 +35,20 @@ namespace Backend_Project.Controllers
             return null;
         }
 
-        [HttpGet]
-        [Route("/leden")]
-        public ActionResult<List<VaccinationRegistration>> GetRegistrations(string date = "")
-        {
-            return Ok();
-        }
+        // [HttpGet]
+        // [Route("/leden")]
+        // public ActionResult<List<VaccinationRegistration>> GetRegistrations(string date = "")
+        // {
+        //     return Ok();
+        // }
 
-        [HttpPost]
-        [Route("/registration")]
-        public ActionResult<VaccinationRegistration> AddRegistration(VaccinationRegistration registration)
-        {
+        // [HttpPost]
+        // [Route("/registration")]
+        // public ActionResult<VaccinationRegistration> AddRegistration(VaccinationRegistration registration)
+        // {
 
-            return null;
-        }
+        //     return null;
+        // }
 
     }
 }
