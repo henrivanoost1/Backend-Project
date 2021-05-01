@@ -7,7 +7,7 @@ namespace Backend_Project.Models
 {
     public class Lid
     {
-        public Guid LidId { get; set; }
+        public int LidId { get; set; }
 
 
         public string Name { get; set; }
@@ -15,7 +15,6 @@ namespace Backend_Project.Models
 
         public string FirstName { get; set; }
 
-        [Range(16, 80)]
         public int Age { get; set; }
 
         [JsonIgnore]

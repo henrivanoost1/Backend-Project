@@ -6,7 +6,7 @@ namespace Backend_Project.Models
 {
     public class RegioverantwoordelijkeAfdeling
     {
-        public Guid RegioverantwoordelijkeId { get; set; }
+        public int RegioverantwoordelijkeId { get; set; }
 
         public int AfdelingId { get; set; }
 

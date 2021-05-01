@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Backend_Project.Configuration;
+using Backend_Project.DataContext;
 
 namespace Backend_Project
 {
@@ -28,6 +29,7 @@ namespace Backend_Project
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
+            services.AddDbContext<KAJContext>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

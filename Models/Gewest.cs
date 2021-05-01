@@ -7,7 +7,7 @@ namespace Backend_Project.Models
 {
     public class Gewest
     {
-        public Guid GewestId { get; set; }
+        public int GewestId { get; set; }
 
 
         public string Name { get; set; }

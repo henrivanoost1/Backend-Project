@@ -7,7 +7,7 @@ namespace Backend_Project.Models
     public class Regioverantwoordelijke
     {
 
-        public Guid RegioverantwoordelijkeId { get; set; }
+        public int RegioverantwoordelijkeId { get; set; }
 
 
         public string Name { get; set; }
@@ -23,6 +23,10 @@ namespace Backend_Project.Models
 
         [JsonIgnore]
         public List<RegioverantwoordelijkeAfdeling> RegioverantwoordelijkenAfdeling { get; set; }
+
+        public int GewestId { get; set; }
+
+        public Gewest Gewest { get; set; }
 
     }
 }

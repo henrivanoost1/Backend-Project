@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Backend_Project.Models;
+using Backend_Project.DataContext;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Globalization;
@@ -16,8 +17,10 @@ namespace Backend_Project.Controllers
     [Route("api")]
     public class KAJController : ControllerBase
     {
-        public KAJController()
+        private KAJContext _context;
+        public KAJController(KAJContext context)
         {
+            _context = context;
 
         }
 
@@ -25,7 +28,7 @@ namespace Backend_Project.Controllers
         [Route("/afdelingen")]
         public List<Afdeling> GetAfdelingen()
         {
-            return null;
+            return _context;
         }
 
         [HttpGet]

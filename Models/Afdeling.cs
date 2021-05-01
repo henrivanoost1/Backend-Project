@@ -7,7 +7,7 @@ namespace Backend_Project.Models
 {
     public class Afdeling
     {
-        public Guid AfdelingId { get; set; }
+        public int AfdelingId { get; set; }
 
 
         public string Name { get; set; }
@@ -18,6 +18,10 @@ namespace Backend_Project.Models
         [JsonIgnore]
         public List<RegioverantwoordelijkeAfdeling> RegioverantwoordelijkeAfdeling { get; set; }
         public List<Lid> Leden { get; set; }
+
+        public int GewestId { get; set; }
+
+        public Gewest Gewest { get; set; }
 
     }
 }
