@@ -18,9 +18,11 @@ namespace Backend_Project.DataContext
     public interface IKAJContext
     {
         DbSet<Afdeling> Afdelingen { get; set; }
+        DbSet<RegioverantwoordelijkeAfdeling> RegioverantwoordelijkeAfdeling { get; set; }
         DbSet<Gewest> Gewesten { get; set; }
         DbSet<Lid> Leden { get; set; }
         DbSet<Regioverantwoordelijke> Regioverantwoordelijken { get; set; }
+
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
@@ -28,15 +30,17 @@ namespace Backend_Project.DataContext
     public class KAJContext : DbContext, IKAJContext
     {
         public DbSet<Afdeling> Afdelingen { get; set; }
+
+        public DbSet<RegioverantwoordelijkeAfdeling> RegioverantwoordelijkeAfdeling { get; set; }
         public DbSet<Gewest> Gewesten { get; set; }
         public DbSet<Lid> Leden { get; set; }
         public DbSet<Regioverantwoordelijke> Regioverantwoordelijken { get; set; }
-        public DbSet<RegioverantwoordelijkeAfdeling> RegioverantwoordelijkeAfdeling { get; set; }
+
         private ConnectionStrings _connectionStrings;
 
 
 
-        public KAJContext(DbContextOptions<KAJContext> options, IOptions<ConnectionStrings> connectionStrings)
+        public KAJContext(DbContextOptions<KAJContext> options, IOptions<ConnectionStrings> connectionStrings) : base(options)
         {
             _connectionStrings = connectionStrings.Value;
 
