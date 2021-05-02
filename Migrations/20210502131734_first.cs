@@ -102,12 +102,6 @@ namespace Backend_Project.Migrations
                         principalTable: "Afdelingen",
                         principalColumn: "AfdelingId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_RegioverantwoordelijkeAfdelingen_Regioverantwoordelijken_RegioverantwoordelijkeId",
-                        column: x => x.RegioverantwoordelijkeId,
-                        principalTable: "Regioverantwoordelijken",
-                        principalColumn: "RegioverantwoordelijkeId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -171,10 +165,10 @@ namespace Backend_Project.Migrations
                 values: new object[,]
                 {
                     { 1, 1, 1 },
-                    { 2, 1, 2 },
-                    { 3, 1, 3 },
                     { 1, 2, 4 },
+                    { 2, 1, 2 },
                     { 2, 2, 5 },
+                    { 3, 1, 3 },
                     { 3, 2, 6 }
                 });
 
@@ -208,10 +202,10 @@ namespace Backend_Project.Migrations
                 name: "RegioverantwoordelijkeAfdelingen");
 
             migrationBuilder.DropTable(
-                name: "Afdelingen");
+                name: "Regioverantwoordelijken");
 
             migrationBuilder.DropTable(
-                name: "Regioverantwoordelijken");
+                name: "Afdelingen");
 
             migrationBuilder.DropTable(
                 name: "Gewesten");

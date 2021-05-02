@@ -59,8 +59,8 @@ namespace Backend_Project.DataContext
         {
             modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasKey(sc => new { sc.RegioverantwoordelijkeId, sc.AfdelingId });
 
-            modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasOne<Regioverantwoordelijke>(sc => sc.Regioverantwoordelijke).WithMany(s => s.RegioverantwoordelijkeAfdelingen).HasForeignKey(sc => sc.RegioverantwoordelijkeId);
-            modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasOne<Afdeling>(sc => sc.Afdeling).WithMany(s => s.RegioverantwoordelijkeAfdelingen).HasForeignKey(sc => sc.AfdelingId);
+            // modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasOne<Regioverantwoordelijke>(sc => sc.Regioverantwoordelijke).WithMany(s => s.RegioverantwoordelijkeAfdelingen).HasForeignKey(sc => sc.RegioverantwoordelijkeId);
+            // modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasOne<Afdeling>(sc => sc.Afdeling).WithMany(s => s.RegioverantwoordelijkeAfdelingen).HasForeignKey(sc => sc.AfdelingId);
 
             modelBuilder.Entity<Gewest>().HasData(new Gewest()
             {

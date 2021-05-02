@@ -372,21 +372,11 @@ namespace Backend_Project.Migrations
 
             modelBuilder.Entity("Backend_Project.Models.RegioverantwoordelijkeAfdeling", b =>
                 {
-                    b.HasOne("Backend_Project.Models.Afdeling", "Afdeling")
+                    b.HasOne("Backend_Project.Models.Afdeling", null)
                         .WithMany("RegioverantwoordelijkeAfdelingen")
                         .HasForeignKey("AfdelingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Backend_Project.Models.Regioverantwoordelijke", "Regioverantwoordelijke")
-                        .WithMany("RegioverantwoordelijkeAfdelingen")
-                        .HasForeignKey("RegioverantwoordelijkeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Afdeling");
-
-                    b.Navigation("Regioverantwoordelijke");
                 });
 
             modelBuilder.Entity("Backend_Project.Models.Afdeling", b =>
@@ -401,11 +391,6 @@ namespace Backend_Project.Migrations
                     b.Navigation("Afdelingen");
 
                     b.Navigation("Regioverantwoordelijken");
-                });
-
-            modelBuilder.Entity("Backend_Project.Models.Regioverantwoordelijke", b =>
-                {
-                    b.Navigation("RegioverantwoordelijkeAfdelingen");
                 });
 #pragma warning restore 612, 618
         }

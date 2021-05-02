@@ -11,11 +11,11 @@ namespace Backend_Project.Models
         public int RegioverantwoordelijkeAfdelingId { get; set; }
         public int RegioverantwoordelijkeId { get; set; }
 
-        public Regioverantwoordelijke Regioverantwoordelijke { get; set; }
+        // public Regioverantwoordelijke Regioverantwoordelijke { get; set; }
 
         public int AfdelingId { get; set; }
 
-        public Afdeling Afdeling { get; set; }
+        // public Afdeling Afdeling { get; set; }
 
     }
 }
