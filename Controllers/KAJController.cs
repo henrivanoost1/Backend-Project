@@ -15,7 +15,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Backend_Project.Controllers
 {
     [ApiController]
-
+    [Route("api")]
     public class KAJController : ControllerBase
     {
         private KAJContext _context;
@@ -26,39 +26,34 @@ namespace Backend_Project.Controllers
         }
 
         [HttpGet]
-        [Route("/afdelingen")]
+        [Route("afdelingen")]
         public async Task<List<Afdeling>> GetAfdelingen()
         {
             return await _context.Afdelingen.ToListAsync();
         }
 
         [HttpGet]
-        [Route("/gewesten")]
+        [Route("gewesten")]
         public async Task<List<Gewest>> GetGewesten()
         {
             return await _context.Gewesten.ToListAsync();
         }
 
         [HttpGet]
-        [Route("/leden")]
+        [Route("leden")]
         public async Task<List<Lid>> GetLeden()
         {
             return await _context.Leden.ToListAsync();
         }
 
         [HttpGet]
-        [Route("/regioverantwoordelijken")]
+        [Route("regioverantwoordelijken")]
         public async Task<List<Regioverantwoordelijke>> GetRegioverantwoordelijken()
         {
             return await _context.Regioverantwoordelijken.ToListAsync();
         }
 
-        [HttpGet]
-        [Route("/regioverantwoordelijken")]
-        public async Task<List<Regioverantwoordelijke>> GetRegioverantwoordelijken()
-        {
-            return await _context.Regioverantwoordelijken.ToListAsync();
-        }
+
 
         // [HttpGet]
         // [Route("/leden")]
@@ -67,13 +62,24 @@ namespace Backend_Project.Controllers
         //     return Ok();
         // }
 
-        // [HttpPost]
-        // [Route("/registration")]
-        // public ActionResult<VaccinationRegistration> AddRegistration(VaccinationRegistration registration)
-        // {
+        [HttpPost]
+        [Route("lid")]
+        public async Task<ActionResult<Lid>> AddLid(Lid lid)
+        {
 
-        //     return null;
-        // }
+            try
+            {
+                await _context.Leden.AddAsync(lid);
+                await _context.SaveChangeAsync();
+                return lid;
+
+            }
+            catch (Exception ex)
+            {
+
+                return new StatusCodeResult(500);
+            }
+        }
 
     }
 }
