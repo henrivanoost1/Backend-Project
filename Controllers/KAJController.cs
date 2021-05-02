@@ -28,7 +28,7 @@ namespace Backend_Project.Controllers
         [Route("/afdelingen")]
         public List<Afdeling> GetAfdelingen()
         {
-            return _context;
+            return null;
         }
 
         [HttpGet]

@@ -10,7 +10,7 @@ namespace Backend_Project.Models
 
         public int AfdelingId { get; set; }
 
-        public Afdeling Afdeling { get; set; }
+        // public Afdeling Afdeling { get; set; }
 
     }
 }

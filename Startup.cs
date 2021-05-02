@@ -32,10 +32,15 @@ namespace Backend_Project
             services.AddDbContext<KAJContext>();
 
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Backend_Project", Version = "v1" });
             });
+
+            services.AddTransient<IKAJContext, KAJContext>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

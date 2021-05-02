@@ -17,6 +17,7 @@ namespace Backend_Project.Models
 
         [JsonIgnore]
         public List<RegioverantwoordelijkeAfdeling> RegioverantwoordelijkeAfdeling { get; set; }
+        [JsonIgnore]
         public List<Lid> Leden { get; set; }
 
         public int GewestId { get; set; }

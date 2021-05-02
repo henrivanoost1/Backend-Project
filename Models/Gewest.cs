@@ -14,8 +14,9 @@ namespace Backend_Project.Models
 
         [JsonIgnore]
 
-        public List<Regioverantwoordelijke> RegioverantwoordelijkeId { get; set; }
+        public List<Regioverantwoordelijke> Regioverantwoordelijken { get; set; }
 
+        [JsonIgnore]
         public List<Afdeling> Afdelingen { get; set; }
     }
 }

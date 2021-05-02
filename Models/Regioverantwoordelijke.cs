@@ -22,7 +22,7 @@ namespace Backend_Project.Models
         public string Email { get; set; }
 
         [JsonIgnore]
-        public List<RegioverantwoordelijkeAfdeling> RegioverantwoordelijkenAfdeling { get; set; }
+        public List<RegioverantwoordelijkeAfdeling> RegioverantwoordelijkeAfdeling { get; set; }
 
         public int GewestId { get; set; }
 
