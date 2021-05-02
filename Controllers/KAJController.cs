@@ -10,11 +10,12 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Globalization;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend_Project.Controllers
 {
     [ApiController]
-    [Route("api")]
+
     public class KAJController : ControllerBase
     {
         private KAJContext _context;
@@ -26,16 +27,37 @@ namespace Backend_Project.Controllers
 
         [HttpGet]
         [Route("/afdelingen")]
-        public List<Afdeling> GetAfdelingen()
+        public async Task<List<Afdeling>> GetAfdelingen()
         {
-            return null;
+            return await _context.Afdelingen.ToListAsync();
         }
 
         [HttpGet]
-        [Route("/gewest")]
-        public List<Gewest> GetGewesten()
+        [Route("/gewesten")]
+        public async Task<List<Gewest>> GetGewesten()
         {
-            return null;
+            return await _context.Gewesten.ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("/leden")]
+        public async Task<List<Lid>> GetLeden()
+        {
+            return await _context.Leden.ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("/regioverantwoordelijken")]
+        public async Task<List<Regioverantwoordelijke>> GetRegioverantwoordelijken()
+        {
+            return await _context.Regioverantwoordelijken.ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("/regioverantwoordelijken")]
+        public async Task<List<Regioverantwoordelijke>> GetRegioverantwoordelijken()
+        {
+            return await _context.Regioverantwoordelijken.ToListAsync();
         }
 
         // [HttpGet]
