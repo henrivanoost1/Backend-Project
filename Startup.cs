@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Backend_Project.Configuration;
 using Backend_Project.DataContext;
+using Backend_Project.Repositories;
 
 namespace Backend_Project
 {
@@ -39,6 +40,10 @@ namespace Backend_Project
             });
 
             services.AddTransient<IKAJContext, KAJContext>();
+            services.AddTransient<IAfdelingRepository, AfdelingRepository>();
+            services.AddTransient<IGewestRepository, GewestRepository>();
+            services.AddTransient<ILidRepository, LidRepository>();
+            services.AddTransient<IRegioverantwoordelijkeRepository, RegioverantwoordelijkeRepository>();
 
 
         }

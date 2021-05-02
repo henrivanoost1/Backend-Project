@@ -23,7 +23,7 @@ namespace Backend_Project.Models
         public Gewest Gewest { get; set; }
 
         [JsonIgnore]
-        public IList<RegioverantwoordelijkeAfdeling> RegioverantwoordelijkeAfdelingen { get; set; }
+        public List<RegioverantwoordelijkeAfdeling> RegioverantwoordelijkeAfdelingen { get; set; }
 
 
     }
