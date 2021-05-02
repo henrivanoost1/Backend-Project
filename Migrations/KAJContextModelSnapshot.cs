@@ -289,42 +289,51 @@ namespace Backend_Project.Migrations
                     b.Property<int>("AfdelingId")
                         .HasColumnType("int");
 
+                    b.Property<int>("RegioverantwoordelijkeAfdelingId")
+                        .HasColumnType("int");
+
                     b.HasKey("RegioverantwoordelijkeId", "AfdelingId");
 
                     b.HasIndex("AfdelingId");
 
-                    b.ToTable("RegioverantwoordelijkeAfdeling");
+                    b.ToTable("RegioverantwoordelijkeAfdelingen");
 
                     b.HasData(
                         new
                         {
                             RegioverantwoordelijkeId = 1,
-                            AfdelingId = 1
+                            AfdelingId = 1,
+                            RegioverantwoordelijkeAfdelingId = 1
                         },
                         new
                         {
                             RegioverantwoordelijkeId = 1,
-                            AfdelingId = 2
+                            AfdelingId = 2,
+                            RegioverantwoordelijkeAfdelingId = 2
                         },
                         new
                         {
                             RegioverantwoordelijkeId = 1,
-                            AfdelingId = 3
+                            AfdelingId = 3,
+                            RegioverantwoordelijkeAfdelingId = 3
                         },
                         new
                         {
                             RegioverantwoordelijkeId = 2,
-                            AfdelingId = 1
+                            AfdelingId = 1,
+                            RegioverantwoordelijkeAfdelingId = 4
                         },
                         new
                         {
                             RegioverantwoordelijkeId = 2,
-                            AfdelingId = 2
+                            AfdelingId = 2,
+                            RegioverantwoordelijkeAfdelingId = 5
                         },
                         new
                         {
                             RegioverantwoordelijkeId = 2,
-                            AfdelingId = 3
+                            AfdelingId = 3,
+                            RegioverantwoordelijkeAfdelingId = 6
                         });
                 });
 
@@ -363,24 +372,28 @@ namespace Backend_Project.Migrations
 
             modelBuilder.Entity("Backend_Project.Models.RegioverantwoordelijkeAfdeling", b =>
                 {
-                    b.HasOne("Backend_Project.Models.Afdeling", null)
-                        .WithMany("RegioverantwoordelijkeAfdeling")
+                    b.HasOne("Backend_Project.Models.Afdeling", "Afdeling")
+                        .WithMany("RegioverantwoordelijkeAfdelingen")
                         .HasForeignKey("AfdelingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Backend_Project.Models.Regioverantwoordelijke", null)
-                        .WithMany("RegioverantwoordelijkeAfdeling")
+                    b.HasOne("Backend_Project.Models.Regioverantwoordelijke", "Regioverantwoordelijke")
+                        .WithMany("RegioverantwoordelijkeAfdelingen")
                         .HasForeignKey("RegioverantwoordelijkeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Afdeling");
+
+                    b.Navigation("Regioverantwoordelijke");
                 });
 
             modelBuilder.Entity("Backend_Project.Models.Afdeling", b =>
                 {
                     b.Navigation("Leden");
 
-                    b.Navigation("RegioverantwoordelijkeAfdeling");
+                    b.Navigation("RegioverantwoordelijkeAfdelingen");
                 });
 
             modelBuilder.Entity("Backend_Project.Models.Gewest", b =>
@@ -392,7 +405,7 @@ namespace Backend_Project.Migrations
 
             modelBuilder.Entity("Backend_Project.Models.Regioverantwoordelijke", b =>
                 {
-                    b.Navigation("RegioverantwoordelijkeAfdeling");
+                    b.Navigation("RegioverantwoordelijkeAfdelingen");
                 });
 #pragma warning restore 612, 618
         }

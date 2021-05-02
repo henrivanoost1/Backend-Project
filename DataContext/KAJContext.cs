@@ -17,11 +17,12 @@ namespace Backend_Project.DataContext
 {
     public interface IKAJContext
     {
+        DbSet<Regioverantwoordelijke> Regioverantwoordelijken { get; set; }
         DbSet<Afdeling> Afdelingen { get; set; }
-        DbSet<RegioverantwoordelijkeAfdeling> RegioverantwoordelijkeAfdeling { get; set; }
+        DbSet<RegioverantwoordelijkeAfdeling> RegioverantwoordelijkeAfdelingen { get; set; }
         DbSet<Gewest> Gewesten { get; set; }
         DbSet<Lid> Leden { get; set; }
-        DbSet<Regioverantwoordelijke> Regioverantwoordelijken { get; set; }
+
 
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
@@ -29,12 +30,13 @@ namespace Backend_Project.DataContext
 
     public class KAJContext : DbContext, IKAJContext
     {
+        public DbSet<Regioverantwoordelijke> Regioverantwoordelijken { get; set; }
         public DbSet<Afdeling> Afdelingen { get; set; }
 
-        public DbSet<RegioverantwoordelijkeAfdeling> RegioverantwoordelijkeAfdeling { get; set; }
+        public DbSet<RegioverantwoordelijkeAfdeling> RegioverantwoordelijkeAfdelingen { get; set; }
         public DbSet<Gewest> Gewesten { get; set; }
         public DbSet<Lid> Leden { get; set; }
-        public DbSet<Regioverantwoordelijke> Regioverantwoordelijken { get; set; }
+
 
         private ConnectionStrings _connectionStrings;
 
@@ -55,8 +57,10 @@ namespace Backend_Project.DataContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<RegioverantwoordelijkeAfdeling>()
-                   .HasKey(cs => new { cs.RegioverantwoordelijkeId, cs.AfdelingId });
+            modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasKey(sc => new { sc.RegioverantwoordelijkeId, sc.AfdelingId });
+
+            modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasOne<Regioverantwoordelijke>(sc => sc.Regioverantwoordelijke).WithMany(s => s.RegioverantwoordelijkeAfdelingen).HasForeignKey(sc => sc.RegioverantwoordelijkeId);
+            modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasOne<Afdeling>(sc => sc.Afdeling).WithMany(s => s.RegioverantwoordelijkeAfdelingen).HasForeignKey(sc => sc.AfdelingId);
 
             modelBuilder.Entity<Gewest>().HasData(new Gewest()
             {
@@ -76,78 +80,6 @@ namespace Backend_Project.DataContext
                 Name = "Brussel"
             });
 
-            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
-            {
-                AfdelingId = 1,
-                Name = "KAJ Machelen",
-                Gemeente = "Machelen",
-                GewestId = 2
-            });
-
-            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
-            {
-                AfdelingId = 2,
-                Name = "KAJ Merelbeke",
-                Gemeente = "Merelbeke",
-                GewestId = 2
-            });
-
-            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
-            {
-                AfdelingId = 3,
-                Name = "KAJ Bottelaere",
-                Gemeente = "Merelbeke",
-                GewestId = 2
-            });
-
-            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
-            {
-                AfdelingId = 4,
-                Name = "KAJ Brugge",
-                Gemeente = "Brugge",
-                GewestId = 1
-            });
-
-            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
-            {
-                AfdelingId = 5,
-                Name = "KAJ Waregem",
-                Gemeente = "Waregem",
-                GewestId = 1
-            });
-
-            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
-            {
-                AfdelingId = 6,
-                Name = "KAmeleJon Roeselare",
-                Gemeente = "Roeselare",
-                GewestId = 1
-            });
-
-
-            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
-            {
-                AfdelingId = 7,
-                Name = "KAJ Don Bosco",
-                Gemeente = "Sint-Pieters-Woluwe",
-                GewestId = 3
-            });
-
-            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
-            {
-                AfdelingId = 8,
-                Name = "KAJ Lajet",
-                Gemeente = "Lajet",
-                GewestId = 3
-            });
-
-            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
-            {
-                AfdelingId = 9,
-                Name = "KAJ De Mug",
-                Gemeente = "Brussel",
-                GewestId = 3
-            });
 
             modelBuilder.Entity<Lid>().HasData(new Lid()
             {
@@ -243,38 +175,117 @@ namespace Backend_Project.DataContext
                 GewestId = 1
             });
 
+            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
+            {
+                AfdelingId = 1,
+                Name = "KAJ Machelen",
+                Gemeente = "Machelen",
+                GewestId = 2
+            });
+
+            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
+            {
+                AfdelingId = 2,
+                Name = "KAJ Merelbeke",
+                Gemeente = "Merelbeke",
+                GewestId = 2
+            });
+
+            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
+            {
+                AfdelingId = 3,
+                Name = "KAJ Bottelaere",
+                Gemeente = "Merelbeke",
+                GewestId = 2
+            });
+
+            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
+            {
+                AfdelingId = 4,
+                Name = "KAJ Brugge",
+                Gemeente = "Brugge",
+                GewestId = 1
+            });
+
+            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
+            {
+                AfdelingId = 5,
+                Name = "KAJ Waregem",
+                Gemeente = "Waregem",
+                GewestId = 1
+            });
+
+            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
+            {
+                AfdelingId = 6,
+                Name = "KAmeleJon Roeselare",
+                Gemeente = "Roeselare",
+                GewestId = 1
+            });
+
+
+            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
+            {
+                AfdelingId = 7,
+                Name = "KAJ Don Bosco",
+                Gemeente = "Sint-Pieters-Woluwe",
+                GewestId = 3
+            });
+
+            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
+            {
+                AfdelingId = 8,
+                Name = "KAJ Lajet",
+                Gemeente = "Lajet",
+                GewestId = 3
+            });
+
+            modelBuilder.Entity<Afdeling>().HasData(new Afdeling()
+            {
+                AfdelingId = 9,
+                Name = "KAJ De Mug",
+                Gemeente = "Brussel",
+                GewestId = 3
+            });
+
             modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasData(new RegioverantwoordelijkeAfdeling()
             {
+                RegioverantwoordelijkeAfdelingId = 1,
                 RegioverantwoordelijkeId = 1,
                 AfdelingId = 1
             });
 
             modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasData(new RegioverantwoordelijkeAfdeling()
             {
+                RegioverantwoordelijkeAfdelingId = 2,
                 RegioverantwoordelijkeId = 1,
                 AfdelingId = 2
             });
 
             modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasData(new RegioverantwoordelijkeAfdeling()
             {
+                RegioverantwoordelijkeAfdelingId = 3,
                 RegioverantwoordelijkeId = 1,
                 AfdelingId = 3
             });
 
             modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasData(new RegioverantwoordelijkeAfdeling()
             {
+                RegioverantwoordelijkeAfdelingId = 4,
                 RegioverantwoordelijkeId = 2,
                 AfdelingId = 1
             });
 
             modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasData(new RegioverantwoordelijkeAfdeling()
             {
+                RegioverantwoordelijkeAfdelingId = 5,
                 RegioverantwoordelijkeId = 2,
                 AfdelingId = 2
             });
 
             modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasData(new RegioverantwoordelijkeAfdeling()
             {
+                RegioverantwoordelijkeAfdelingId = 6,
                 RegioverantwoordelijkeId = 2,
                 AfdelingId = 3
             });

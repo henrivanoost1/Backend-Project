@@ -86,23 +86,24 @@ namespace Backend_Project.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RegioverantwoordelijkeAfdeling",
+                name: "RegioverantwoordelijkeAfdelingen",
                 columns: table => new
                 {
                     RegioverantwoordelijkeId = table.Column<int>(type: "int", nullable: false),
-                    AfdelingId = table.Column<int>(type: "int", nullable: false)
+                    AfdelingId = table.Column<int>(type: "int", nullable: false),
+                    RegioverantwoordelijkeAfdelingId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RegioverantwoordelijkeAfdeling", x => new { x.RegioverantwoordelijkeId, x.AfdelingId });
+                    table.PrimaryKey("PK_RegioverantwoordelijkeAfdelingen", x => new { x.RegioverantwoordelijkeId, x.AfdelingId });
                     table.ForeignKey(
-                        name: "FK_RegioverantwoordelijkeAfdeling_Afdelingen_AfdelingId",
+                        name: "FK_RegioverantwoordelijkeAfdelingen_Afdelingen_AfdelingId",
                         column: x => x.AfdelingId,
                         principalTable: "Afdelingen",
                         principalColumn: "AfdelingId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RegioverantwoordelijkeAfdeling_Regioverantwoordelijken_RegioverantwoordelijkeId",
+                        name: "FK_RegioverantwoordelijkeAfdelingen_Regioverantwoordelijken_RegioverantwoordelijkeId",
                         column: x => x.RegioverantwoordelijkeId,
                         principalTable: "Regioverantwoordelijken",
                         principalColumn: "RegioverantwoordelijkeId",
@@ -165,16 +166,16 @@ namespace Backend_Project.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "RegioverantwoordelijkeAfdeling",
-                columns: new[] { "AfdelingId", "RegioverantwoordelijkeId" },
+                table: "RegioverantwoordelijkeAfdelingen",
+                columns: new[] { "AfdelingId", "RegioverantwoordelijkeId", "RegioverantwoordelijkeAfdelingId" },
                 values: new object[,]
                 {
-                    { 1, 1 },
-                    { 2, 1 },
-                    { 3, 1 },
-                    { 1, 2 },
-                    { 2, 2 },
-                    { 3, 2 }
+                    { 1, 1, 1 },
+                    { 2, 1, 2 },
+                    { 3, 1, 3 },
+                    { 1, 2, 4 },
+                    { 2, 2, 5 },
+                    { 3, 2, 6 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -188,8 +189,8 @@ namespace Backend_Project.Migrations
                 column: "AfdelingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RegioverantwoordelijkeAfdeling_AfdelingId",
-                table: "RegioverantwoordelijkeAfdeling",
+                name: "IX_RegioverantwoordelijkeAfdelingen_AfdelingId",
+                table: "RegioverantwoordelijkeAfdelingen",
                 column: "AfdelingId");
 
             migrationBuilder.CreateIndex(
@@ -204,7 +205,7 @@ namespace Backend_Project.Migrations
                 name: "Leden");
 
             migrationBuilder.DropTable(
-                name: "RegioverantwoordelijkeAfdeling");
+                name: "RegioverantwoordelijkeAfdelingen");
 
             migrationBuilder.DropTable(
                 name: "Afdelingen");

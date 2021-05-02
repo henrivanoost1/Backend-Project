@@ -16,13 +16,15 @@ namespace Backend_Project.Models
         public string Gemeente { get; set; }
 
         [JsonIgnore]
-        public List<RegioverantwoordelijkeAfdeling> RegioverantwoordelijkeAfdeling { get; set; }
-        [JsonIgnore]
         public List<Lid> Leden { get; set; }
 
         public int GewestId { get; set; }
 
         public Gewest Gewest { get; set; }
+
+        [JsonIgnore]
+        public IList<RegioverantwoordelijkeAfdeling> RegioverantwoordelijkeAfdelingen { get; set; }
+
 
     }
 }
