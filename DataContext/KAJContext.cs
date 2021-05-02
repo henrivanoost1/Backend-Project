@@ -59,7 +59,7 @@ namespace Backend_Project.DataContext
         {
             modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasKey(sc => new { sc.RegioverantwoordelijkeId, sc.AfdelingId });
 
-            // modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasOne<Regioverantwoordelijke>(sc => sc.Regioverantwoordelijke).WithMany(s => s.RegioverantwoordelijkeAfdelingen).HasForeignKey(sc => sc.RegioverantwoordelijkeId);
+            // modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasOne<Regioverantwoordelijke>(sc => sc.Regioverantwoordelijke).WithMany(s => s.RegioverantwoordelijkeAfdelingen).HasForeignKey(sc => sc.RegioverantwoordelijkeId).WillCascadeOnDelete(0);
             // modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasOne<Afdeling>(sc => sc.Afdeling).WithMany(s => s.RegioverantwoordelijkeAfdelingen).HasForeignKey(sc => sc.AfdelingId);
 
             modelBuilder.Entity<Gewest>().HasData(new Gewest()
@@ -250,42 +250,42 @@ namespace Backend_Project.DataContext
 
             modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasData(new RegioverantwoordelijkeAfdeling()
             {
-                RegioverantwoordelijkeAfdelingId = 1,
+                // RegioverantwoordelijkeAfdelingId = 1,
                 RegioverantwoordelijkeId = 1,
                 AfdelingId = 1
             });
 
             modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasData(new RegioverantwoordelijkeAfdeling()
             {
-                RegioverantwoordelijkeAfdelingId = 2,
+                // RegioverantwoordelijkeAfdelingId = 2,
                 RegioverantwoordelijkeId = 1,
                 AfdelingId = 2
             });
 
             modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasData(new RegioverantwoordelijkeAfdeling()
             {
-                RegioverantwoordelijkeAfdelingId = 3,
+                // RegioverantwoordelijkeAfdelingId = 3,
                 RegioverantwoordelijkeId = 1,
                 AfdelingId = 3
             });
 
             modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasData(new RegioverantwoordelijkeAfdeling()
             {
-                RegioverantwoordelijkeAfdelingId = 4,
+                // RegioverantwoordelijkeAfdelingId = 4,
                 RegioverantwoordelijkeId = 2,
                 AfdelingId = 1
             });
 
             modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasData(new RegioverantwoordelijkeAfdeling()
             {
-                RegioverantwoordelijkeAfdelingId = 5,
+                // RegioverantwoordelijkeAfdelingId = 5,
                 RegioverantwoordelijkeId = 2,
                 AfdelingId = 2
             });
 
             modelBuilder.Entity<RegioverantwoordelijkeAfdeling>().HasData(new RegioverantwoordelijkeAfdeling()
             {
-                RegioverantwoordelijkeAfdelingId = 6,
+                // RegioverantwoordelijkeAfdelingId = 6,
                 RegioverantwoordelijkeId = 2,
                 AfdelingId = 3
             });

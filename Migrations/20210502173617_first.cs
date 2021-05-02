@@ -90,8 +90,7 @@ namespace Backend_Project.Migrations
                 columns: table => new
                 {
                     RegioverantwoordelijkeId = table.Column<int>(type: "int", nullable: false),
-                    AfdelingId = table.Column<int>(type: "int", nullable: false),
-                    RegioverantwoordelijkeAfdelingId = table.Column<int>(type: "int", nullable: false)
+                    AfdelingId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -161,15 +160,15 @@ namespace Backend_Project.Migrations
 
             migrationBuilder.InsertData(
                 table: "RegioverantwoordelijkeAfdelingen",
-                columns: new[] { "AfdelingId", "RegioverantwoordelijkeId", "RegioverantwoordelijkeAfdelingId" },
+                columns: new[] { "AfdelingId", "RegioverantwoordelijkeId" },
                 values: new object[,]
                 {
-                    { 1, 1, 1 },
-                    { 1, 2, 4 },
-                    { 2, 1, 2 },
-                    { 2, 2, 5 },
-                    { 3, 1, 3 },
-                    { 3, 2, 6 }
+                    { 1, 1 },
+                    { 1, 2 },
+                    { 2, 1 },
+                    { 2, 2 },
+                    { 3, 1 },
+                    { 3, 2 }
                 });
 
             migrationBuilder.CreateIndex(

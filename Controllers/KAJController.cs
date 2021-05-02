@@ -69,8 +69,7 @@ namespace Backend_Project.Controllers
 
             try
             {
-                await _context.Leden.AddAsync(lid);
-                await _context.SaveChangeAsync();
+
                 return lid;
 
             }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Project.Migrations
 {
     [DbContext(typeof(KAJContext))]
-    [Migration("20210502131734_first")]
+    [Migration("20210502173617_first")]
     partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -291,9 +291,6 @@ namespace Backend_Project.Migrations
                     b.Property<int>("AfdelingId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RegioverantwoordelijkeAfdelingId")
-                        .HasColumnType("int");
-
                     b.HasKey("RegioverantwoordelijkeId", "AfdelingId");
 
                     b.HasIndex("AfdelingId");
@@ -304,38 +301,32 @@ namespace Backend_Project.Migrations
                         new
                         {
                             RegioverantwoordelijkeId = 1,
-                            AfdelingId = 1,
-                            RegioverantwoordelijkeAfdelingId = 1
+                            AfdelingId = 1
                         },
                         new
                         {
                             RegioverantwoordelijkeId = 1,
-                            AfdelingId = 2,
-                            RegioverantwoordelijkeAfdelingId = 2
+                            AfdelingId = 2
                         },
                         new
                         {
                             RegioverantwoordelijkeId = 1,
-                            AfdelingId = 3,
-                            RegioverantwoordelijkeAfdelingId = 3
+                            AfdelingId = 3
                         },
                         new
                         {
                             RegioverantwoordelijkeId = 2,
-                            AfdelingId = 1,
-                            RegioverantwoordelijkeAfdelingId = 4
+                            AfdelingId = 1
                         },
                         new
                         {
                             RegioverantwoordelijkeId = 2,
-                            AfdelingId = 2,
-                            RegioverantwoordelijkeAfdelingId = 5
+                            AfdelingId = 2
                         },
                         new
                         {
                             RegioverantwoordelijkeId = 2,
-                            AfdelingId = 3,
-                            RegioverantwoordelijkeAfdelingId = 6
+                            AfdelingId = 3
                         });
                 });
 
