@@ -11,7 +11,7 @@ namespace Backend_Project.Repositories
     {
         Task<List<Gewest>> GetGewesten();
         Task<Gewest> GetGewest(int gewestId);
-        Task<Gewest> AddGewest(Gewest gewest);
+        // Task<Gewest> AddGewest(Gewest gewest);
 
     }
     public class GewestRepository : IGewestRepository
@@ -35,12 +35,12 @@ namespace Backend_Project.Repositories
             }
         }
 
-        public async Task<Gewest> AddGewest(Gewest gewest)
-        {
-            await _context.Gewesten.AddAsync(gewest);
-            await _context.SaveChangesAsync();
-            return gewest;
-        }
+        // public async Task<Gewest> AddGewest(Gewest gewest)
+        // {
+        //     await _context.Gewesten.AddAsync(gewest);
+        //     await _context.SaveChangesAsync();
+        //     return gewest;
+        // }
 
 
         public async Task<Gewest> GetGewest(int gewestId)

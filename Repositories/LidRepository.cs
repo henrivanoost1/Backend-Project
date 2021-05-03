@@ -12,6 +12,8 @@ namespace Backend_Project.Repositories
     {
         Task<List<Lid>> GetLeden();
         Task<Lid> GetLid(int lidId);
+        Task<Lid> AddLid(Lid lid);
+
 
     }
     public class LidRepository : ILidRepository
@@ -33,6 +35,13 @@ namespace Backend_Project.Repositories
 
                 throw;
             }
+        }
+
+        public async Task<Lid> AddLid(Lid lid)
+        {
+            await _context.Leden.AddAsync(lid);
+            await _context.SaveChangesAsync();
+            return lid;
         }
 
 

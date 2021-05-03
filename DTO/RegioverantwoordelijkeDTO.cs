@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using AutoMapper;
+using Backend_Project.Models;
 
 namespace Backend_Project.DTO
 {

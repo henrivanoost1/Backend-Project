@@ -10,8 +10,9 @@ namespace Backend_Project.DTO
         public AutoMapping()
         {
             CreateMap<Lid, LidDTO>();
-            CreateMap<GewestDTO, Gewest>();
             CreateMap<RegioverantwoordelijkeDTO, Regioverantwoordelijke>();
+            CreateMap<GewestDTO, Gewest>();
+
         }
 
     }

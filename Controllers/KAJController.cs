@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Backend_Project.Models;
-using Backend_Project.DataContext;
+using Backend_Project.DTO;
+using Backend_Project.Services;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Globalization;
@@ -18,67 +19,90 @@ namespace Backend_Project.Controllers
     [Route("api")]
     public class KAJController : ControllerBase
     {
-        private KAJContext _context;
-        public KAJController(KAJContext context)
+        private readonly IKAJService _kajService;
+        private readonly ILogger<KAJController> _logger;
+        public KAJController(ILogger<KAJController> logger, IKAJService kajService)
         {
-            _context = context;
+            _logger = logger;
+            _kajService = kajService;
 
         }
 
-        [HttpGet]
-        [Route("afdelingen")]
-        public async Task<List<Afdeling>> GetAfdelingen()
-        {
-            return await _context.Afdelingen.ToListAsync();
-        }
 
         [HttpGet]
         [Route("gewesten")]
-        public async Task<List<Gewest>> GetGewesten()
+        public async Task<ActionResult<List<Gewest>>> GetGewesten()
         {
-            return await _context.Gewesten.ToListAsync();
-        }
-
-        [HttpGet]
-        [Route("leden")]
-        public async Task<List<Lid>> GetLeden()
-        {
-            return await _context.Leden.ToListAsync();
-        }
-
-        [HttpGet]
-        [Route("regioverantwoordelijken")]
-        public async Task<List<Regioverantwoordelijke>> GetRegioverantwoordelijken()
-        {
-            return await _context.Regioverantwoordelijken.ToListAsync();
-        }
-
-
-
-        // [HttpGet]
-        // [Route("/leden")]
-        // public ActionResult<List<VaccinationRegistration>> GetRegistrations(string date = "")
-        // {
-        //     return Ok();
-        // }
-
-        [HttpPost]
-        [Route("lid")]
-        public async Task<ActionResult<Lid>> AddLid(Lid lid)
-        {
-
             try
             {
-
-                return lid;
-
+                return new OkObjectResult(await _kajService.GetGewesten());
             }
             catch (Exception ex)
             {
 
-                return new StatusCodeResult(500);
+                throw ex;
             }
         }
+
+        [HttpGet]
+        [Route("gewest/{GewestId}")]
+        public async Task<ActionResult<List<Gewest>>> GetGewest(int gewestId)
+        {
+            try
+            {
+                return new OkObjectResult(await _kajService.GetGewest(gewestId));
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        [HttpPost]
+        [Route("lidjes")]
+        public async Task<ActionResult<Lid>> AddLid(Lid lid)
+        {
+            try
+            {
+                return new OkObjectResult(await _kajService.AddLid(lid));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpGet]
+        [Route("leden")]
+        public async Task<ActionResult<List<LidDTO>>> GetLeden()
+        {
+            try
+            {
+                return new OkObjectResult(await _kajService.GetLeden());
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        [HttpGet]
+        [Route("regioverantwoordelijken")]
+        public async Task<ActionResult<List<Regioverantwoordelijke>>> GetRegioverantwoordelijken()
+        {
+            try
+            {
+                return new OkObjectResult(await _kajService.GetRegioverantwoordelijken());
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
 
     }
 }

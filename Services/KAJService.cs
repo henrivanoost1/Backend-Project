@@ -15,13 +15,13 @@ namespace Backend_Project.Services
     public interface IKAJService
     {
         Task<Gewest> GetGewest(int gewestId);
-        Task<GewestDTO> AddGewest(GewestDTO gewest);
+        Task<Lid> AddLid(Lid lid);
         Task<List<Gewest>> GetGewesten();
         Task<List<LidDTO>> GetLeden();
         Task<List<Regioverantwoordelijke>> GetRegioverantwoordelijken();
 
     }
-    public class KAJService
+    public class KAJService : IKAJService
     {
         private IGewestRepository _gewestRepository;
         private ILidRepository _lidRepository;
@@ -65,10 +65,11 @@ namespace Backend_Project.Services
             }
         }
 
-        public async Task<GewestDTO> AddGewest(GewestDTO gewest)
+        public async Task<Lid> AddLid(Lid lid)
         {
-            await _gewestRepository.AddGewest(gewest);
-            return gewest;
+            await _lidRepository.AddLid(lid);
+            return lid;
+
         }
 
 
