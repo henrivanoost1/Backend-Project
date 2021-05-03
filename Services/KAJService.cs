@@ -12,21 +12,66 @@ using System.IO;
 
 namespace Backend_Project.Services
 {
-    public interface ISneakerService
+    public interface IKAJService
     {
-        Task<Sneaker> GetSneaker(Guid sneakerId);
-        Task<SneakerDTO> AddSneaker(SneakerDTO sneaker);
-        Task<List<BrandDTO>> GetBrands();
-        Task<List<OccasionDTO>> GetOccasions();
-        Task<List<Sneaker>> GetSneakers();
-        //  Task AddSneakerImage(Guid sneakerId, IFormFile file);
+        Task<Gewest> GetGewest(int gewestId);
+        Task<GewestDTO> AddGewest(GewestDTO gewest);
+        Task<List<Gewest>> GetGewesten();
+        Task<List<LidDTO>> GetLeden();
+        Task<List<Regioverantwoordelijke>> GetRegioverantwoordelijken();
+
     }
     public class KAJService
     {
-        public KAJService(IAfdelingRepository afdelingRepository, IGewestRepository gewestRepository, ILidRepository lidRepository, IRegioverantwoordelijkeRepository regioverantwoordelijkeRepository)
+        private IGewestRepository _gewestRepository;
+        private ILidRepository _lidRepository;
+
+        private IRegioverantwoordelijkeRepository _regioverantwoordelijkeRepository;
+
+        private IMapper _mapper;
+        public KAJService(IMapper mapper, IGewestRepository gewestRepository, ILidRepository lidRepository, IRegioverantwoordelijkeRepository regioverantwoordelijkeRepository)
         {
+            _mapper = mapper;
+            _gewestRepository = gewestRepository;
+            _lidRepository = lidRepository;
+            _regioverantwoordelijkeRepository = regioverantwoordelijkeRepository;
 
         }
+
+        public async Task<List<Gewest>> GetGewesten()
+        {
+            return await _gewestRepository.GetGewesten();
+        }
+
+        public async Task<List<LidDTO>> GetLeden()
+        {
+            return _mapper.Map<List<LidDTO>>(await _lidRepository.GetLeden());
+        }
+
+        public async Task<List<Regioverantwoordelijke>> GetRegioverantwoordelijken()
+        {
+            return await _regioverantwoordelijkeRepository.GetRegioverantwoordelijken();
+        }
+
+        public async Task<Gewest> GetGewest(int gewestId)
+        {
+            try
+            {
+                return await _gewestRepository.GetGewest(gewestId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<GewestDTO> AddGewest(GewestDTO gewest)
+        {
+            await _gewestRepository.AddGewest(gewest);
+            return gewest;
+        }
+
+
 
     }
 }

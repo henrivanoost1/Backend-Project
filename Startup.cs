@@ -14,6 +14,8 @@ using Microsoft.OpenApi.Models;
 using Backend_Project.Configuration;
 using Backend_Project.DataContext;
 using Backend_Project.Repositories;
+using Backend_Project.Services;
+using AutoMapper;
 
 namespace Backend_Project
 {
@@ -29,6 +31,7 @@ namespace Backend_Project
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup));
             services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
             services.AddDbContext<KAJContext>();
 
@@ -44,6 +47,9 @@ namespace Backend_Project
             services.AddTransient<IGewestRepository, GewestRepository>();
             services.AddTransient<ILidRepository, LidRepository>();
             services.AddTransient<IRegioverantwoordelijkeRepository, RegioverantwoordelijkeRepository>();
+
+            services.AddTransient<IKAJService, KAJService>();
+
 
 
         }

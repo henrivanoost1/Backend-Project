@@ -10,7 +10,6 @@ namespace Backend_Project.Repositories
 {
     public interface IRegioverantwoordelijkeRepository
     {
-        Task<Regioverantwoordelijke> AddRegioverantwoordelijke(Regioverantwoordelijke regioverantwoordelijke);
         Task<List<Regioverantwoordelijke>> GetRegioverantwoordelijken();
         Task<Regioverantwoordelijke> GetRegioverantwoordelijke(int regioverantwoordelijkeId);
 
@@ -30,12 +29,7 @@ namespace Backend_Project.Repositories
 
         }
 
-        public async Task<Regioverantwoordelijke> AddRegioverantwoordelijke(Regioverantwoordelijke regioverantwoordelijke)
-        {
-            await _context.Regioverantwoordelijken.AddAsync(regioverantwoordelijke);
-            await _context.SaveChangesAsync();
-            return regioverantwoordelijke;
-        }
+
 
         public async Task<Regioverantwoordelijke> GetRegioverantwoordelijke(int regioverantwoorelijkeId)
         {
